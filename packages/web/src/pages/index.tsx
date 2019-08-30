@@ -25,7 +25,7 @@ export default class HomePage extends Vue {
       <v-container>
         <ul>
           {this.videos.map((video) => (
-            <li key={video.id}>{video.title}</li>
+            <li key={video.id} domProps={{ innerHTML: video.title }}/>
           ))}
         </ul>
       </v-container>

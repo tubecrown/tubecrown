@@ -11,11 +11,11 @@
     "build": "node ./scripts/tc-dev run --ignore @tubecrown/dev build",
     "format": "node ./scripts/tc-dev run lint",
     "format-full": "node ./scripts/tc-dev run prettier && npm run format",
-    "watch": "npm run build && node ./scripts/tc-dev watch build ./tmp/build-info.txt",
+    "watch": "node ./scripts/tc-dev watch build ./tmp/build-info.txt",
     "check-deps": "node ./scripts/tc-dev check-deps",
     "dev-api": "cd ./packages/api && npm run dev",
     "dev-web": "cd ./packages/web && npm run dev",
-    "dev": "docker-compose up"
+    "dev": "npm run build && docker-compose up"
   },
   "devDependencies": {
     "lerna": "3.16.4"
