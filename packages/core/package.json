@@ -1,0 +1,20 @@
+{
+  "name": "@tubecrown/core",
+  "version": "0.0.0",
+  "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/core",
+  "license": "MIT",
+  "scripts": {
+    "clean": "tc-dev clean",
+    "build": "tc-dev build",
+    "lint": "tc-dev tslint",
+    "prettier": "tc-dev prettier"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@tubecrown/dev": "0.0.0"
+  }
+}

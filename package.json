@@ -1,0 +1,20 @@
+{
+  "name": "tubecrown",
+  "private": true,
+  "scripts": {
+    "init": "npm install && npm run boot -- --scope=@tubecrown/dev && npm run build-dev && npm run boot && npm run build",
+    "boot": "lerna bootstrap --hoist",
+    "link": "lerna link",
+    "clean": "node ./scripts/tc-dev run clean",
+    "clean-full": "npm run clean && node ./scripts/tc-dev run clean-full && lerna clean --yes",
+    "build-dev": "cd ./tools/dev && npm run build",
+    "build": "node ./scripts/tc-dev run --ignore @tubecrown/dev build",
+    "format": "node ./scripts/tc-dev run lint",
+    "format-full": "node ./scripts/tc-dev run prettier && npm run format",
+    "watch": "npm run build && node ./scripts/tc-dev watch build ./tmp/build-info.txt",
+    "check-deps": "node ./scripts/tc-dev check-deps"
+  },
+  "devDependencies": {
+    "lerna": "3.16.4"
+  }
+}
