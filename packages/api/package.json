@@ -1,0 +1,33 @@
+{
+  "name": "@tubecrown/api",
+  "version": "0.0.0",
+  "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/api",
+  "license": "MIT",
+  "main": "lib/main.js",
+  "scripts": {
+    "clean": "tc-dev clean",
+    "build": "tc-dev build",
+    "lint": "tc-dev tslint",
+    "prettier": "tc-dev prettier",
+    "prepare-release": "npm run clean && npm run build",
+    "dev": "nodemon"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@nestjs/common": "6.6.1",
+    "@nestjs/core": "6.6.1",
+    "@nestjs/platform-express": "6.6.1",
+    "@tubecrown/core": "0.0.0",
+    "helmet": "3.20.0",
+    "morgan": "1.9.1",
+    "reflect-metadata": "0.1.13"
+  },
+  "devDependencies": {
+    "@tubecrown/dev": "0.0.0",
+    "@types/helmet": "0.0.44",
+    "@types/morgan": "1.7.37",
+    "nodemon": "1.19.1"
+  }
+}
