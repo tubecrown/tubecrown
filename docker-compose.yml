@@ -1,0 +1,28 @@
+version: '3'
+services:
+  watch:
+    image: tubecrown/dev-nodejs
+    volumes:
+      - .:/usr/src/app
+    command: npm run watch
+  api:
+    depends_on:
+      - watch
+    restart: on-failure
+    image: tubecrown/dev-nodejs
+    volumes:
+      - .:/usr/src/app
+    command: npm run dev-api
+    ports:
+      - 4100:4100
+  web:
+    depends_on:
+      - watch
+      - api
+    restart: on-failure
+    image: tubecrown/dev-nodejs
+    volumes:
+      - .:/usr/src/app
+    command: npm run dev-web
+    ports:
+      - 4000:4000

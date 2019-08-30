@@ -7,14 +7,15 @@
     "link": "lerna link",
     "clean": "node ./scripts/tc-dev run clean",
     "clean-full": "npm run clean && node ./scripts/tc-dev run clean-full && lerna clean --yes",
-    "build-dev": "cd ./tools/dev && npm run build",
+    "build-dev": "docker build -t tubecrown/dev-nodejs -f docker/dev-nodejs.dockerfile ./docker && cd ./tools/dev && npm run build",
     "build": "node ./scripts/tc-dev run --ignore @tubecrown/dev build",
     "format": "node ./scripts/tc-dev run lint",
     "format-full": "node ./scripts/tc-dev run prettier && npm run format",
     "watch": "npm run build && node ./scripts/tc-dev watch build ./tmp/build-info.txt",
     "check-deps": "node ./scripts/tc-dev check-deps",
     "dev-api": "cd ./packages/api && npm run dev",
-    "dev-web": "cd ./packages/web && npm run dev"
+    "dev-web": "cd ./packages/web && npm run dev",
+    "dev": "docker-compose up"
   },
   "devDependencies": {
     "lerna": "3.16.4"
