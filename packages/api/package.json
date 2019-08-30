@@ -9,7 +9,6 @@
     "build": "tc-dev build",
     "lint": "tc-dev tslint",
     "prettier": "tc-dev prettier",
-    "prepare-release": "npm run clean && npm run build",
     "dev": "nodemon"
   },
   "publishConfig": {
