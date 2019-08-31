@@ -2,16 +2,13 @@ import { Injectable } from '@nestjs/common'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { YouTube } from '@tubecrown/youtube'
 import { DateTime } from 'luxon'
-import { FilterXSS } from 'xss'
-import { ConfigService } from '../config'
-
-const xss = new FilterXSS()
+import { ConfigService, HtmlService } from '../common'
 
 @Injectable()
 export class VideoService {
   private readonly youTubeApiClient: YouTube.ApiClient
 
-  constructor (configService: ConfigService) {
+  constructor (private readonly htmlService: HtmlService, configService: ConfigService) {
     this.youTubeApiClient = new YouTube.ApiClient(configService.youTubeConfig)
   }
 
@@ -27,7 +24,7 @@ export class VideoService {
       const { title, publishedAt, thumbnails, channelTitle } = searchVideoResult.snippet
       return new VideoDto({
         id: searchVideoResult.id.videoId,
-        titleHtml: xss.process(title),
+        titleHtml: this.htmlService.sanitize(title),
         publishedAt,
         thumbnail: thumbnails.high.url,
         channelTitle,

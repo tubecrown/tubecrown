@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '../config'
+import { CommonModule } from '../common'
 import { VideoController } from './video-controller'
 import { VideoService } from './video-service'
 
 @Module({
-  imports: [ConfigModule],
+  imports: [CommonModule],
   providers: [VideoService],
   controllers: [VideoController],
 })
