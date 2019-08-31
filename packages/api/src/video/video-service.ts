@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { YouTube } from '@tubecrown/youtube'
 import { DateTime } from 'luxon'
+import { FilterXSS } from 'xss'
 import { ConfigService } from '../config'
+
+const xss = new FilterXSS()
 
 @Injectable()
 export class VideoService {
@@ -21,9 +24,13 @@ export class VideoService {
       maxResults: 12,
     })
     return videoSearchReponse.items.map((searchVideoResult) => {
+      const { title, publishedAt, thumbnails, channelTitle } = searchVideoResult.snippet
       return new VideoDto({
         id: searchVideoResult.id.videoId,
-        title: searchVideoResult.snippet.title,
+        titleHtml: xss.process(title),
+        publishedAt,
+        thumbnail: thumbnails.high.url,
+        channelTitle,
       })
     })
   }
