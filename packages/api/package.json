@@ -15,12 +15,14 @@
     "access": "public"
   },
   "dependencies": {
+    "@keyv/sqlite": "2.0.1",
     "@nestjs/common": "6.6.3",
     "@nestjs/core": "6.6.3",
     "@nestjs/platform-express": "6.6.3",
     "@tubecrown/core": "0.0.0",
     "config": "3.2.2",
     "helmet": "3.20.1",
+    "keyv": "3.1.0",
     "luxon": "1.17.2",
     "morgan": "1.9.1",
     "reflect-metadata": "0.1.13",
@@ -31,6 +33,7 @@
     "@tubecrown/youtube": "0.0.0",
     "@types/config": "0.0.34",
     "@types/helmet": "0.0.44",
+    "@types/keyv": "3.1.0",
     "@types/luxon": "1.15.2",
     "@types/morgan": "1.7.37",
     "nodemon": "1.19.1"

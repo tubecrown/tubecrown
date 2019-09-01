@@ -18,7 +18,7 @@ export class VideoService {
       startDate: currentDate.minus({ day: 1 }).toISO(),
       endDate: currentDate.toISO(),
       regionCode: 'US',
-      maxResults: 12,
+      maxResults: 50,
     })
     return videoSearchReponse.items.map((searchVideoResult) => {
       const { title, publishedAt, thumbnails, channelTitle } = searchVideoResult.snippet
