@@ -31,4 +31,9 @@ export class VideoService {
       })
     })
   }
+
+  async getVideoById (videoId: string): Promise<VideoDto | undefined> {
+    const videos = await this.search()
+    return videos.find((video) => video.id === videoId)
+  }
 }

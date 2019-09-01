@@ -9,7 +9,7 @@ import { VideoCard } from '../components/video'
     VideoCard,
   },
   async asyncData () {
-    const videos = (await axios.get<VideoDto>('http://localhost:4000/api/videos')).data
+    const videos = (await axios.get<VideoDto[]>('http://localhost:4000/api/videos')).data
     return {
       videos,
     }
