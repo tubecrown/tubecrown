@@ -4,7 +4,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class DefaultLayout extends Vue {
   render () {
     return (
-      <v-app>
+      <v-app class='white'>
         <nuxt/>
       </v-app>
     )

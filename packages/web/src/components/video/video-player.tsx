@@ -31,7 +31,7 @@ export class VideoPlayer extends Vue {
   }
 
   render () {
-    const { titleHtml } = this.video
+    const { titleHtml, channelTitle, publishedAt } = this.video
     return (
       <div>
         <div class='video-player__background'>
@@ -39,7 +39,16 @@ export class VideoPlayer extends Vue {
             <div id={playerPlaceholder}/>
           </div>
         </div>
-        <div domProps={{ innerHTML: titleHtml }}/>
+        <div class='pa-4'>
+          <div domProps={{ innerHTML: titleHtml }} class='title'/>
+          <div class='subtitle-1'>
+            {channelTitle}
+            <client-only>
+              {' '}&middot;{' '}
+              {publishedAt}
+            </client-only>
+          </div>
+        </div>
       </div>
     )
   }
