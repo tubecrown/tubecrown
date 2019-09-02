@@ -20,27 +20,29 @@ export class ApiClient {
   searchVideos (searchVideoParams: SearchVideoParams): Promise<ListResponse<SearchVideoResult>> {
     const { startDate, endDate, regionCode, maxResults } = searchVideoParams
     const cacheKey = `searchVideos/${[startDate, endDate, regionCode, maxResults].join('&')}`
-    return this.requestWithCache(cacheKey, this.http.get<ListResponse<SearchVideoResult>>('search', {
-      params: {
-        type: 'video',
-        part: 'snippet',
-        videoEmbeddable: true,
-        order: 'viewCount',
-        publishedAfter: startDate,
-        publishedBefore: endDate,
-        regionCode,
-        maxResults,
-        key: this.config.apiKey,
-      },
-    }))
+    return this.requestWithCache(cacheKey, () =>
+      this.http.get<ListResponse<SearchVideoResult>>('search', {
+        params: {
+          type: 'video',
+          part: 'snippet',
+          videoEmbeddable: true,
+          order: 'viewCount',
+          publishedAfter: startDate,
+          publishedBefore: endDate,
+          regionCode,
+          maxResults,
+          key: this.config.apiKey,
+        },
+      }),
+    )
   }
 
-  private async requestWithCache<T> (cacheKey: string, request: Promise<AxiosResponse<T>>): Promise<T> {
+  private async requestWithCache<T> (cacheKey: string, request: () => Promise<AxiosResponse<T>>): Promise<T> {
     const cachedResponse: T | undefined = await this.cache.get(cacheKey)
     if (cachedResponse) {
       return cachedResponse
     }
-    const response = (await request).data
+    const response = (await request()).data
     await this.cache.set(cacheKey, response)
     return response
   }
