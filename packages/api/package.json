@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@keyv/sqlite": "2.0.1",
-    "@nestjs/common": "6.6.3",
-    "@nestjs/core": "6.6.3",
-    "@nestjs/platform-express": "6.6.3",
+    "@nestjs/common": "6.6.7",
+    "@nestjs/core": "6.6.7",
+    "@nestjs/platform-express": "6.6.7",
     "@tubecrown/core": "0.0.0",
     "config": "3.2.2",
     "helmet": "3.20.1",
@@ -36,6 +36,6 @@
     "@types/keyv": "3.1.0",
     "@types/luxon": "1.15.2",
     "@types/morgan": "1.7.37",
-    "nodemon": "1.19.1"
+    "nodemon": "1.19.2"
   }
 }
