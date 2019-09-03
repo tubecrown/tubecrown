@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import Keyv from 'keyv'
 import { Config } from './youtube-config'
 import { ListResponse } from './youtube-list-response'
-import { SearchVideoParams, SearchVideoResult } from './youtube-video'
+import { SearchVideoParams, SearchVideoResult, Video } from './youtube-video'
 
 export class ApiClient {
   private readonly http: AxiosInstance
@@ -35,6 +35,35 @@ export class ApiClient {
         },
       }),
     )
+  }
+
+  async getVideoDetails (videoIds: string[]): Promise<Record<string, Video>> {
+    const videoById: Record<string, Video> = {}
+    const videoIdsToQuery = []
+    for (const videoId of videoIds) {
+      const cacheKey = `getVideoDetails/${videoId}`
+      const cachedVideo: Video | undefined = await this.cache.get(cacheKey)
+      if (cachedVideo) {
+        videoById[videoId] = cachedVideo
+      } else {
+        videoIdsToQuery.push(videoId)
+      }
+    }
+    if (videoIdsToQuery.length) {
+      const videos: Video[] = (await this.http.get<ListResponse<Video>>('videos', {
+        params: {
+          part: 'contentDetails,statistics',
+          id: videoIdsToQuery.join(','),
+          key: this.config.apiKey,
+        },
+      })).data.items
+      for (const video of videos) {
+        const cacheKey = `getVideoDetails/${video.id}`
+        await this.cache.set(cacheKey, video)
+        videoById[video.id] = video
+      }
+    }
+    return videoById
   }
 
   private async requestWithCache<T> (cacheKey: string, request: () => Promise<AxiosResponse<T>>): Promise<T> {

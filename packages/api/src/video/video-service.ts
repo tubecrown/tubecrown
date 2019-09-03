@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { YouTube } from '@tubecrown/youtube'
+import { Video } from '@tubecrown/youtube/lib/exports'
 import { DateTime } from 'luxon'
 import { ConfigService, HtmlService } from '../common'
 
@@ -20,14 +21,20 @@ export class VideoService {
       regionCode: 'US',
       maxResults: 50,
     })
+    const videoIds: string[] = videoSearchReponse.items.map((searchVideoResult) => searchVideoResult.id.videoId)
+    const videoById: Record<string, Video> = await this.youTubeApiClient.getVideoDetails(videoIds)
     return videoSearchReponse.items.map((searchVideoResult) => {
-      const { title, publishedAt, thumbnails, channelTitle } = searchVideoResult.snippet
+      const { title, publishedAt, thumbnails, channelId, channelTitle } = searchVideoResult.snippet
+      const { contentDetails, statistics } = videoById[searchVideoResult.id.videoId]
       return new VideoDto({
         id: searchVideoResult.id.videoId,
         titleHtml: this.htmlService.sanitize(title),
         publishedAt,
         thumbnail: thumbnails.high.url,
+        channelId,
         channelTitle,
+        duration: contentDetails.duration,
+        viewCount: +statistics.viewCount,
       })
     })
   }

@@ -1,4 +1,5 @@
 import { VideoDto } from '@tubecrown/core/lib/video'
+import shortNumber from 'short-number'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 export interface VideoClickEvent {
@@ -17,13 +18,15 @@ export class VideoCard extends Vue {
   }
 
   render () {
-    const { id, titleHtml, publishedAt, thumbnail, channelTitle } = this.video
+    const { id, titleHtml, publishedAt, thumbnail, channelTitle, viewCount } = this.video
     return (
       <nuxt-link to={`/v/${id}`} event='' nativeOn={{ click: this.handleClick }} class='video-card'>
         <v-img src={thumbnail} aspect-ratio={1.5}/>
         <div class='video-card__title text__two-lines font-weight-medium mt-2' domProps={{ innerHTML: titleHtml }}/>
         <div class='video-card__subtitle text__two-lines mt-1'>
           {channelTitle}
+          {' '}&middot;{' '}
+          {shortNumber(viewCount)}
           <client-only>
             {' '}&middot;{' '}
             {publishedAt}

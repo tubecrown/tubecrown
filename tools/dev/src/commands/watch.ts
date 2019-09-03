@@ -14,6 +14,30 @@ const shouldWatch = (pkgPath: string, scriptName: string): boolean => {
   return pkgJson.scripts && pkgJson.scripts[scriptName]
 }
 
+interface HandleFileChangeOptions {
+  rootPath: string
+  scriptName: string
+  infoPath?: string
+}
+
+const handleFileChange = ({ rootPath, scriptName, infoPath }: HandleFileChangeOptions) => {
+  return async (filePath: string) => {
+    const pkgPath = path.join(rootPath, path.relative(rootPath, filePath).split('src')[0])
+    try {
+      const exitCode = await npm(['run', scriptName], { cwd: pkgPath })
+      if (exitCode) {
+        console.log(`${pkgPath}: '${scriptName}' failed with exit code ${exitCode}`)
+      } else if (infoPath) {
+        fs.writeFileSync(infoPath, `rebuild: ${new Date()}`)
+      }
+    } catch (err) {
+      console.log(`${pkgPath}: '${scriptName}' failed`)
+      console.log(err)
+    }
+    console.log('Done')
+  }
+}
+
 export const watch = async (argv: string[]): Promise<number> => {
   const rootPath = process.cwd()
   const scriptName = argv[0]
@@ -29,19 +53,7 @@ export const watch = async (argv: string[]): Promise<number> => {
   })
   console.log()
   const watcher = chokidar.watch(packages.map((pkgPath) => path.join(pkgPath, 'src')))
-  watcher.on('change', async (filePath) => {
-    const pkgPath = path.join(rootPath, path.relative(rootPath, filePath).split('src')[0])
-    try {
-      await npm(['run', scriptName], { cwd: pkgPath })
-      if (infoPath) {
-        fs.writeFileSync(infoPath, `rebuild: ${new Date()}`)
-      }
-    } catch (err) {
-      console.log(`${pkgPath}: '${scriptName}' failed`)
-      console.log(err)
-    }
-    console.log('Done')
-  })
+  watcher.on('change', handleFileChange({ rootPath, scriptName, infoPath }))
   watcher.on('error', console.error)
   if (infoPath) {
     fs.writeFileSync(infoPath, `ready: ${new Date()}`)

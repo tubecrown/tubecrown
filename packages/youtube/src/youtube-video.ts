@@ -8,6 +8,14 @@ export interface VideoSnippet {
   readonly channelTitle: string
 }
 
+export interface VideoContentDetails {
+  readonly duration: string
+}
+
+export interface VideoStatistics {
+  readonly viewCount: string
+}
+
 export interface SearchVideoParams {
   startDate: string
   endDate: string
@@ -23,4 +31,11 @@ export interface SearchVideoResult {
   readonly etag: string
   readonly id: SearchVideoId
   readonly snippet: VideoSnippet
+}
+
+export interface Video {
+  readonly etag: string
+  readonly id: string
+  readonly contentDetails: VideoContentDetails
+  readonly statistics: VideoStatistics
 }

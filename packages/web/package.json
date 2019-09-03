@@ -20,6 +20,7 @@
     "escape-goat": "2.1.0",
     "http-proxy": "1.17.0",
     "nuxt-property-decorator": "2.4.0",
+    "short-number": "1.0.7",
     "vue-property-decorator": "8.2.2",
     "vuetify": "2.0.12"
   },
