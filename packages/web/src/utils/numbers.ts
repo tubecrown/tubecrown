@@ -1,5 +1,5 @@
 import millify from 'millify'
-import { defaultOptions as millifyDefaultOptions } from 'millify/lib/options'
+import { defaultOptions as millifyDefaultOptions } from 'millify/dist/options'
 
 const millifyShortOptions = {
   ...millifyDefaultOptions,

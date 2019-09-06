@@ -26,7 +26,7 @@ export class VideoCard extends Vue {
         <div class='video-card__subtitle text__two-lines mt-1'>
           {channelTitle}
           {' '}&middot;{' '}
-          {formatShortNumber(viewCount)}
+          {formatShortNumber(viewCount)} views
           <client-only>
             {' '}&middot;{' '}
             {publishedAt}

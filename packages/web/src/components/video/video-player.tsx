@@ -1,6 +1,7 @@
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Player, withYouTube } from '../../utils/youtube-player'
+import { formatShortNumber } from '../../utils/numbers'
 
 const playerPlaceholder = 'playerPlaceholder'
 
@@ -31,7 +32,7 @@ export class VideoPlayer extends Vue {
   }
 
   render () {
-    const { titleHtml, channelTitle, publishedAt } = this.video
+    const { titleHtml, channelTitle, publishedAt, viewCount } = this.video
     return (
       <div>
         <div class='video-player__background'>
@@ -43,6 +44,8 @@ export class VideoPlayer extends Vue {
           <div domProps={{ innerHTML: titleHtml }} class='title'/>
           <div class='subtitle-1'>
             {channelTitle}
+            {' '}&middot;{' '}
+            {formatShortNumber(viewCount)} views
             <client-only>
               {' '}&middot;{' '}
               {publishedAt}
