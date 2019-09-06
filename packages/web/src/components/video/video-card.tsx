@@ -1,6 +1,6 @@
 import { VideoDto } from '@tubecrown/core/lib/video'
-import shortNumber from 'short-number'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { formatShortNumber } from '../../utils/numbers'
 
 export interface VideoClickEvent {
   video: VideoDto
@@ -26,7 +26,7 @@ export class VideoCard extends Vue {
         <div class='video-card__subtitle text__two-lines mt-1'>
           {channelTitle}
           {' '}&middot;{' '}
-          {shortNumber(viewCount)}
+          {formatShortNumber(viewCount)}
           <client-only>
             {' '}&middot;{' '}
             {publishedAt}

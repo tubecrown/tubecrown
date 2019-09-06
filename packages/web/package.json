@@ -19,14 +19,14 @@
     "axios": "0.19.0",
     "escape-goat": "2.1.0",
     "http-proxy": "1.17.0",
+    "millify": "3.1.2",
     "nuxt-property-decorator": "2.4.0",
-    "short-number": "1.0.7",
     "vue-property-decorator": "8.2.2",
-    "vuetify": "2.0.12"
+    "vuetify": "2.0.15"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "7.5.0",
-    "@nuxt/typescript-build": "0.2.1",
+    "@nuxt/typescript-build": "0.2.6",
     "@tubecrown/dev": "0.0.0",
     "@types/axios": "0.14.0",
     "@types/escape-goat": "2.0.1",
