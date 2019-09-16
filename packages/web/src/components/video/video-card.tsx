@@ -1,5 +1,6 @@
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { formatFromNow } from '../../utils/datetimes'
 import { formatShortNumber } from '../../utils/numbers'
 
 export interface VideoClickEvent {
@@ -29,7 +30,7 @@ export class VideoCard extends Vue {
           {formatShortNumber(viewCount)} views
           <client-only>
             {' '}&middot;{' '}
-            {publishedAt}
+            <time datetime={publishedAt}>{formatFromNow(publishedAt)}</time>
           </client-only>
         </div>
       </nuxt-link>

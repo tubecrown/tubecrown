@@ -1,7 +1,8 @@
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Player, withYouTube } from '../../utils/youtube-player'
+import { formatFromNow } from '../../utils/datetimes'
 import { formatShortNumber } from '../../utils/numbers'
+import { Player, withYouTube } from '../../utils/youtube-player'
 
 const playerPlaceholder = 'playerPlaceholder'
 
@@ -48,7 +49,7 @@ export class VideoPlayer extends Vue {
             {formatShortNumber(viewCount)} views
             <client-only>
               {' '}&middot;{' '}
-              {publishedAt}
+              <time datetime={publishedAt}>{formatFromNow(publishedAt)}</time>
             </client-only>
           </div>
         </div>
