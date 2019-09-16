@@ -48,10 +48,8 @@ export class VideoPlayer extends Vue {
             {' '}&middot;{' '}
             {formatShortNumber(viewCount)} views
             <client-only>
-              <time datetime={publishedAt}>
-                {' '}&middot;{' '}
-                {formatFromNow(publishedAt)}
-              </time>
+              {' '}&middot;{' '}
+              <time datetime={publishedAt}>{formatFromNow(publishedAt)}</time>
             </client-only>
           </div>
         </div>
