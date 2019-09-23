@@ -23,11 +23,9 @@ export class VideoCard extends Vue {
     return (
       <nuxt-link to={`/v/${id}`} event='' nativeOn={{ click: this.handleClick }} class='video-card'>
         <v-img src={thumbnail} aspect-ratio={1.5}>
-          <v-row align='end' class='pa-1 fill-height'>
-            <v-col align='right'>
-              <v-chip label color='rgb(0, 0, 0, 0.8)' text-color='white'>{formatDuration(duration)}</v-chip>
-            </v-col>
-          </v-row>
+          <div class='video-card__duration white--text px-1'>
+            {formatDuration(duration)}
+          </div>
         </v-img>
         <div class='video-card__title text__two-lines font-weight-medium mt-2' domProps={{ innerHTML: titleHtml }}/>
         <div class='video-card__subtitle text__two-lines mt-1'>
