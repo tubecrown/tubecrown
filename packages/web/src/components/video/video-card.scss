@@ -14,3 +14,11 @@
   line-height: 1.1rem !important;
   max-height: 2.2rem;
 }
+
+.video-card__duration {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.2rem;
+}
