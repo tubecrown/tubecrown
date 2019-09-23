@@ -21,6 +21,7 @@ export interface SearchVideoParams {
   endDate: string
   regionCode: string
   maxResults: number
+  pageToken?: string
 }
 
 export interface SearchVideoId {
