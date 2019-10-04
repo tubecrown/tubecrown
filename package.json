@@ -17,6 +17,9 @@
     "dev-web": "cd ./packages/web && npm run dev",
     "dev": "npm run build && docker-compose up"
   },
+  "engines": {
+    "node": "10"
+  },
   "devDependencies": {
     "lerna": "3.16.4"
   }
