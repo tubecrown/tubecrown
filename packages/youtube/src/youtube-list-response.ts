@@ -1,6 +1,6 @@
 export interface PageInfo {
   totalResults: number
-  resultsPerPage: number 
+  resultsPerPage: number
 }
 
 export interface ListResponse<T> {

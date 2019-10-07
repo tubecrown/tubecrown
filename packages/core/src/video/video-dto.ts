@@ -1,3 +1,5 @@
+import { DataOnly } from '../utils/data-only'
+
 export class VideoDto {
   readonly id: string
   readonly titleHtml: string
@@ -8,7 +10,7 @@ export class VideoDto {
   readonly duration: string
   readonly viewCount: number
 
-  constructor (videoDtoOptions: VideoDto) {
+  constructor (videoDtoOptions: DataOnly<VideoDto>) {
     const { id, titleHtml, publishedAt, thumbnail, channelId, channelTitle, duration, viewCount } = videoDtoOptions
     this.id = id
     this.titleHtml = titleHtml
@@ -18,5 +20,9 @@ export class VideoDto {
     this.channelTitle = channelTitle
     this.duration = duration
     this.viewCount = viewCount
+  }
+
+  __isDto () {
+    return true
   }
 }
