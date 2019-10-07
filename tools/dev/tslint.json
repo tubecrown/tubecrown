@@ -38,6 +38,7 @@
     "no-unused-variable": true,
     "jsx-boolean-value": [true, "never"],
     "jsx-no-multiline-js": false,
-    "jsx-no-string-ref": false
+    "jsx-no-string-ref": false,
+    "jsx-wrap-multiline": false
   }
 }
