@@ -7,7 +7,7 @@
     "clean": "tc-dev clean",
     "build": "tc-dev build",
     "lint": "tc-dev tslint",
-    "prettier": "tc-dev prettier",
+    "prettier": "tc-dev prettier migrations/**/*.ts",
     "start": "NODE_CONFIG_DIR=../../config ts-node ./node_modules/.bin/typeorm -f src/typeorm/typeorm-config"
   },
   "publishConfig": {
