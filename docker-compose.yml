@@ -1,5 +1,15 @@
 version: '3'
 services:
+  postgres:
+    image: postgres:11.5-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: tubecrown
+      POSTGRES_USER: tubecrown_postgres
+      POSTGRES_PASSWORD: tubecrown_secret
+    ports:
+      - 5432:5432
   watch:
     image: tubecrown/dev-nodejs
     volumes:
@@ -8,6 +18,7 @@ services:
   api:
     depends_on:
       - watch
+      - postgres
     restart: on-failure
     image: tubecrown/dev-nodejs
     volumes:
@@ -26,3 +37,5 @@ services:
     command: npm run dev-web
     ports:
       - 4000:4000
+volumes:
+  postgres_data:

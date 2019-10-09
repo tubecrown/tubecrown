@@ -1,0 +1,27 @@
+{
+  "name": "@tubecrown/models",
+  "version": "0.0.0",
+  "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/models",
+  "license": "MIT",
+  "scripts": {
+    "clean": "tc-dev clean",
+    "build": "tc-dev build",
+    "lint": "tc-dev tslint",
+    "prettier": "tc-dev prettier",
+    "start": "NODE_CONFIG_DIR=../../config ts-node ./node_modules/.bin/typeorm -f src/typeorm/typeorm-config"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tubecrown/core": "0.0.0",
+    "config": "3.2.3",
+    "pg": "7.12.1",
+    "typeorm": "0.2.19",
+    "typeorm-naming-strategies": "1.1.0"
+  },
+  "devDependencies": {
+    "@tubecrown/dev": "0.0.0",
+    "ts-node": "8.4.1"
+  }
+}
