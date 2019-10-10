@@ -14,7 +14,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "0.2.0",
+    "@nuxt/typescript-runtime": "0.2.1",
     "@tubecrown/core": "0.0.0",
     "axios": "0.19.0",
     "escape-goat": "2.1.1",
@@ -23,11 +23,11 @@
     "millify": "3.1.2",
     "nuxt-property-decorator": "2.4.0",
     "vue-property-decorator": "8.2.2",
-    "vuetify": "2.1.1"
+    "vuetify": "2.1.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
-    "@nuxt/typescript-build": "0.3.0",
+    "@nuxt/typescript-build": "0.3.1",
     "@tubecrown/dev": "0.0.0",
     "@types/axios": "0.14.0",
     "@types/escape-goat": "2.0.1",
