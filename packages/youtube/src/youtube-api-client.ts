@@ -53,7 +53,7 @@ export class ApiClient {
     if (videoIdsToQuery.length) {
       const videos: Video[] = (await this.http.get<ListResponse<Video>>('videos', {
         params: {
-          part: 'contentDetails,status,statistics',
+          part: 'snippet,contentDetails,status,statistics',
           id: videoIdsToQuery.join(','),
           key: this.config.apiKey,
         },
