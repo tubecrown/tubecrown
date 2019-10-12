@@ -1,0 +1,3 @@
+# Only store default config
+/src/env/*
+!/src/env/default.*
