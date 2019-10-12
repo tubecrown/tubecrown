@@ -181,7 +181,3 @@ tools/**/package-lock.json
 tools/**/lib
 
 /tmp
-
-# Only store default config
-/config/*
-!/config/default.*

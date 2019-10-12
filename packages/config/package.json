@@ -1,7 +1,7 @@
 {
-  "name": "@tubecrown/youtube",
+  "name": "@tubecrown/config",
   "version": "0.0.0",
-  "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/youtube",
+  "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/config",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
@@ -14,11 +14,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@tubecrown/config": "0.0.0",
-    "axios": "0.19.0"
+    "config": "3.2.3"
   },
   "devDependencies": {
     "@tubecrown/dev": "0.0.0",
-    "@types/axios": "0.14.0"
+    "@types/config": "0.0.34"
   }
 }

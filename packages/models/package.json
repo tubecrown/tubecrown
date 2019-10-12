@@ -8,14 +8,14 @@
     "build": "tc-dev build",
     "lint": "tc-dev tslint",
     "prettier": "tc-dev prettier migrations/**/*.ts",
-    "start": "NODE_CONFIG_DIR=../../config ts-node ./node_modules/.bin/typeorm -f src/typeorm/typeorm-config"
+    "start": "ts-node ./node_modules/.bin/typeorm -f src/typeorm/typeorm-config"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
+    "@tubecrown/config": "0.0.0",
     "@tubecrown/core": "0.0.0",
-    "config": "3.2.3",
     "pg": "7.12.1",
     "typeorm": "0.2.19",
     "typeorm-naming-strategies": "1.1.0"
