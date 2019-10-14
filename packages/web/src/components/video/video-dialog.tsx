@@ -19,11 +19,12 @@ export class VideoDialog extends Vue {
     return (
       <v-dialog
         value={!!this.video}
+        content-class='container pa-0'
         on={{ input: this.handleDialogUpdate }}
       >
-        {this.video && <div class='white'>
+        {this.video && <v-container class='white'>
           <video-player video={this.video}/>
-        </div>}
+        </v-container>}
       </v-dialog>
     )
   }
