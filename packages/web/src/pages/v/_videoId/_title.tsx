@@ -4,7 +4,8 @@ import axios from 'axios'
 import { htmlUnescape } from 'escape-goat'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
-import { VideoPlayer } from '../../components/video'
+import { VideoPlayer } from '../../../components/video'
+import slugify from '@sindresorhus/slugify'
 
 @Component<WatchPage>({
   components: {
@@ -20,6 +21,15 @@ import { VideoPlayer } from '../../components/video'
 })
 export default class WatchPage extends Vue {
   readonly video!: VideoDto
+
+  async middleware (context: Context) {
+    const { params } = context
+    const video = (await axios.get<VideoDto>(`http://localhost:4000/api/videos/${params.videoId}`)).data
+    const slugTitle = slugify(video.titleHtml)
+    if (slugTitle !== params.title) {
+      context.redirect(`/v/${params.videoId}/${slugTitle}`)
+    }
+  }
 
   head (): MetaInfo {
     return {
