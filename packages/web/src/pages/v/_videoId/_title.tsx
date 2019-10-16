@@ -1,11 +1,11 @@
 import { Context } from '@nuxt/types'
+import slugify from '@sindresorhus/slugify'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import axios from 'axios'
 import { htmlUnescape } from 'escape-goat'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
 import { VideoPlayer } from '../../../components/video'
-import slugify from '@sindresorhus/slugify'
 
 @Component<WatchPage>({
   components: {
