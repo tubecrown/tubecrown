@@ -34,6 +34,6 @@
     "@types/keyv": "3.1.0",
     "@types/luxon": "1.15.2",
     "@types/morgan": "1.7.37",
-    "nodemon": "1.19.3"
+    "nodemon": "1.19.4"
   }
 }
