@@ -32,10 +32,8 @@ export class VideoCard extends Vue {
           {channelTitle}
           {' '}&middot;{' '}
           {formatShortNumber(viewCount)} views
-          <client-only>
-            {' '}&middot;{' '}
-            <time datetime={publishedAt}>{formatFromNow(publishedAt)}</time>
-          </client-only>
+          {' '}&middot;{' '}
+          <time datetime={publishedAt}>{formatFromNow(publishedAt)}</time>
         </div>
       </nuxt-link>
     )

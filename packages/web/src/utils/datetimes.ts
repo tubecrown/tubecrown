@@ -1,7 +1,7 @@
 import { DateTime, Duration } from 'luxon'
 
 export const formatFromNow = (dateToFormat: string): string | null => {
-  return DateTime.fromISO(dateToFormat).toRelative()
+  return DateTime.fromISO(dateToFormat).toRelative({ locale: 'us' })
 }
 
 export const formatDuration = (durationToFormat: string): string => {
