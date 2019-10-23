@@ -1,4 +1,5 @@
 import { Context } from '@nuxt/types'
+import isNaturalNumber from 'is-natural-number'
 import { DateTime } from 'luxon'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
@@ -6,7 +7,7 @@ import { MetaInfo } from 'vue-meta'
 @Component<SearchByYearPage>({
   async asyncData (context: Context) {
     const { params } = context
-    const dateTime = DateTime.utc(Number(params.year))
+    const dateTime = DateTime.utc(+params.year)
     const startDate = dateTime.toFormat('yyyy/MM/dd')
     const endDate = dateTime.plus({ years: 1 }).toFormat('yyyy/MM/dd')
     const title = `Best videos of ${dateTime.toFormat('yyyy')}`
@@ -24,8 +25,8 @@ export default class SearchByYearPage extends Vue {
 
   async middleware (context: Context) {
     const { params } = context
-    const year = Number(params.year)
-    if (isNaN(year) || year < 0) {
+    const year = +params.year
+    if (!isNaturalNumber(year)) {
       context.redirect(`/1990`)
     }
   }

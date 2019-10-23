@@ -1,4 +1,5 @@
 import { Context } from '@nuxt/types'
+import isNaturalNumber from 'is-natural-number'
 import { DateTime } from 'luxon'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
@@ -6,7 +7,7 @@ import { MetaInfo } from 'vue-meta'
 @Component<SearchByDatePage>({
   async asyncData (context: Context) {
     const { params } = context
-    const date = DateTime.utc(Number(params.year), Number(params.month), Number(params.date))
+    const date = DateTime.utc(+params.year, +params.month, +params.date)
     const startDate = date.toFormat('yyyy/MM/dd')
     const endDate = date.plus({ days: 1 }).toFormat('yyyy/MM/dd')
     const title = `Best videos of ${date.toFormat('dd MMM yyyy')}`
@@ -24,14 +25,14 @@ export default class SearchByDatePage extends Vue {
 
   async middleware (context: Context) {
     const { params } = context
-    const year = Number(params.year)
-    const month = Number(params.month)
-    const date = Number(params.date)
-    if (isNaN(year) || year < 0) {
+    const year = +params.year
+    const month = +params.month
+    const date = +params.date
+    if (!isNaturalNumber(year)) {
       context.redirect(`/1990`)
-    } else if (isNaN(month) || month > 12 || month < 0) {
+    } else if (!isNaturalNumber(month) || month > 12) {
       context.redirect(`/${year}/01`)
-    } else if (isNaN(date) || date > 31 || date < 0) {
+    } else if (!isNaturalNumber(date) || date > 31) {
       context.redirect(`/${year}/${('0' + month).slice(-2)}/01`)
     } else {
       const dateTime = DateTime.utc(year, month, date)
