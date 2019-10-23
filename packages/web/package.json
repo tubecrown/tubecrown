@@ -25,7 +25,7 @@
     "millify": "3.1.2",
     "nuxt-property-decorator": "2.5.0",
     "vue-property-decorator": "8.3.0",
-    "vuetify": "2.1.5"
+    "vuetify": "2.1.6"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
@@ -37,8 +37,8 @@
     "@types/is-natural-number": "4.0.0",
     "@types/luxon": "1.15.2",
     "@types/sass": "1.16.0",
-    "nuxt": "2.10.1",
-    "sass": "1.23.0",
+    "nuxt": "2.10.2",
+    "sass": "1.23.1",
     "sass-loader": "8.0.0",
     "ts-node": "8.4.1"
   }
