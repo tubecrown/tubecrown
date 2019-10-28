@@ -1,4 +1,4 @@
-import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config'
+import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config/lib/youtube'
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import Keyv from 'keyv'
 import { ListResponse } from './youtube-list-response'

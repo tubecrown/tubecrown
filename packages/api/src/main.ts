@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
-import { job } from 'cron'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import { AppModule } from './app-module'
+import { TaskScheduleService } from './task'
 
 export const start = async () => {
   const app: INestApplication = await NestFactory.create(AppModule)
@@ -12,13 +12,8 @@ export const start = async () => {
     app.use(morgan('dev'))
   }
   await app.listen(4100)
-  job({
-    cronTime: '0 */1 * * * *',
-    onTick: () => {
-      console.log('cron', new Date())
-    },
-    start: true,
-  })
+  const taskScheduleService = app.get(TaskScheduleService)
+  taskScheduleService.schedule()
 }
 
 if (require.main === module) {

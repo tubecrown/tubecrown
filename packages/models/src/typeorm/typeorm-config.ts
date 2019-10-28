@@ -1,4 +1,4 @@
-import { getPostgresConfig } from '@tubecrown/config'
+import { getPostgresConfig } from '@tubecrown/config/lib/postgres'
 import path from 'path'
 import { ConnectionOptions } from 'typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
