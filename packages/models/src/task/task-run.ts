@@ -27,7 +27,7 @@ export class TaskRun {
   createdAt!: string
 
   @Column({ type: 'text', nullable: true })
-  finishedAt!: string
+  finishedAt?: string
 
   constructor (taskRunOptions?: TaskRunOptions) {
     if (taskRunOptions) {

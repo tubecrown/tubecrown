@@ -37,6 +37,9 @@ export class TaskScheduler {
         await this.startTask(task, 'there was no previous run')
         return
       }
+      if (!lastRun.finishedAt) {
+        continue
+      }
       if (parseDateTime(lastRun.finishedAt).plus(task.sleepTimeSinceLastRun) < now) {
         await this.startTask(task, `last run finished at ${lastRun.finishedAt}`)
         return
