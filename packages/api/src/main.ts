@@ -12,7 +12,7 @@ export const start = async () => {
     app.use(morgan('dev'))
   }
   await app.listen(4100)
-  app.get(TaskScheduler).start()
+  app.get(TaskScheduler).schedule()
 }
 
 if (require.main === module) {
