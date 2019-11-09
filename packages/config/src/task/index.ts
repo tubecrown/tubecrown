@@ -1,2 +1,2 @@
 import '../config-path'
-export * from './task-schedule-config'
+export * from './task-scheduler-config'

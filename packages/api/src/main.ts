@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import { AppModule } from './app-module'
-import { TaskScheduleService } from './task'
+import { TaskScheduler } from './task'
 
 export const start = async () => {
   const app: INestApplication = await NestFactory.create(AppModule)
@@ -12,8 +12,7 @@ export const start = async () => {
     app.use(morgan('dev'))
   }
   await app.listen(4100)
-  const taskScheduleService = app.get(TaskScheduleService)
-  taskScheduleService.schedule()
+  app.get(TaskScheduler).start()
 }
 
 if (require.main === module) {

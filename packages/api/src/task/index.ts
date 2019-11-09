@@ -1,2 +1,2 @@
-export * from './task-schedule-service'
+export * from './task-scheduler'
 export * from './task-module'
