@@ -1,3 +1,5 @@
 # Only publish default config
 /src/env/*
 !/src/env/default.*
+/lib/env/*
+!/lib/env/default.*

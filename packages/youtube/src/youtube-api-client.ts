@@ -1,25 +1,25 @@
-import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config'
+import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config/lib/youtube'
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import Keyv from 'keyv'
 import { ListResponse } from './youtube-list-response'
 import { SearchVideoParams, SearchVideoResult, Video } from './youtube-video'
 
+const config: YouTubeConfig = getYouTubeConfig()
+
 export class ApiClient {
-  private readonly config: YouTubeConfig
   private readonly http: AxiosInstance
   private readonly cache: Keyv
 
   constructor () {
-    this.config = getYouTubeConfig()
     this.http = axios.create({
       baseURL: 'https://www.googleapis.com/youtube/v3',
     })
-    this.cache = new Keyv(this.config.cacheUri, {
+    this.cache = new Keyv(config.cacheUri, {
       ttl: 24 * 60 * 60 * 1000,
     })
   }
 
-  searchVideos (searchVideoParams: SearchVideoParams): Promise<ListResponse<SearchVideoResult>> {
+  async searchVideos (searchVideoParams: SearchVideoParams): Promise<ListResponse<SearchVideoResult>> {
     const { startDate, endDate, regionCode, maxResults, pageToken } = searchVideoParams
     const cacheKey = `searchVideos/${[startDate, endDate, regionCode, maxResults, pageToken].join('&')}`
     return this.requestWithCache(cacheKey, () =>
@@ -34,7 +34,7 @@ export class ApiClient {
           regionCode,
           maxResults,
           pageToken,
-          key: this.config.apiKey,
+          key: config.apiKey,
         },
       }),
     )
@@ -53,13 +53,15 @@ export class ApiClient {
       }
     }
     if (videoIdsToQuery.length) {
-      const videos: Video[] = (await this.http.get<ListResponse<Video>>('videos', {
-        params: {
-          part: 'snippet,contentDetails,status,statistics',
-          id: videoIdsToQuery.join(','),
-          key: this.config.apiKey,
-        },
-      })).data.items
+      const videos: Video[] = (
+        await this.http.get<ListResponse<Video>>('videos', {
+          params: {
+            part: 'snippet,contentDetails,status,statistics',
+            id: videoIdsToQuery.join(','),
+            key: config.apiKey,
+          },
+        })
+      ).data.items
       for (const video of videos) {
         const cacheKey = `getVideoDetails/${video.id}`
         await this.cache.set(cacheKey, video)

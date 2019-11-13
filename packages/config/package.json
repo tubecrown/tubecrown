@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "repository": "https://github.com/tubecrown/tubecrown/tree/master/packages/config",
   "license": "MIT",
-  "main": "lib/index.js",
   "scripts": {
     "clean": "tc-dev clean",
     "build": "tc-dev build",
@@ -14,10 +13,10 @@
     "access": "public"
   },
   "dependencies": {
-    "config": "3.2.3"
+    "config": "3.2.4"
   },
   "devDependencies": {
     "@tubecrown/dev": "0.0.0",
-    "@types/config": "0.0.34"
+    "@types/config": "0.0.36"
   }
 }
