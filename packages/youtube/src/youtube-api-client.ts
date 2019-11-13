@@ -19,7 +19,7 @@ export class ApiClient {
     })
   }
 
-  searchVideos (searchVideoParams: SearchVideoParams): Promise<ListResponse<SearchVideoResult>> {
+  async searchVideos (searchVideoParams: SearchVideoParams): Promise<ListResponse<SearchVideoResult>> {
     const { startDate, endDate, regionCode, maxResults, pageToken } = searchVideoParams
     const cacheKey = `searchVideos/${[startDate, endDate, regionCode, maxResults, pageToken].join('&')}`
     return this.requestWithCache(cacheKey, () =>
@@ -53,13 +53,15 @@ export class ApiClient {
       }
     }
     if (videoIdsToQuery.length) {
-      const videos: Video[] = (await this.http.get<ListResponse<Video>>('videos', {
-        params: {
-          part: 'snippet,contentDetails,status,statistics',
-          id: videoIdsToQuery.join(','),
-          key: config.apiKey,
-        },
-      })).data.items
+      const videos: Video[] = (
+        await this.http.get<ListResponse<Video>>('videos', {
+          params: {
+            part: 'snippet,contentDetails,status,statistics',
+            id: videoIdsToQuery.join(','),
+            key: config.apiKey,
+          },
+        })
+      ).data.items
       for (const video of videos) {
         const cacheKey = `getVideoDetails/${video.id}`
         await this.cache.set(cacheKey, video)
