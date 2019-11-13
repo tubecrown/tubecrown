@@ -2,6 +2,7 @@ import config from 'config'
 
 export interface PostgresConfig {
   readonly host: string
+  readonly hostForApi?: string
   readonly port: number
   readonly database: string
   readonly username: string

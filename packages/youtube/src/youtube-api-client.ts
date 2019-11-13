@@ -1,20 +1,20 @@
-import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config'
+import { getYouTubeConfig, YouTubeConfig } from '@tubecrown/config/lib/youtube'
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import Keyv from 'keyv'
 import { ListResponse } from './youtube-list-response'
 import { SearchVideoParams, SearchVideoResult, Video } from './youtube-video'
 
+const config: YouTubeConfig = getYouTubeConfig()
+
 export class ApiClient {
-  private readonly config: YouTubeConfig
   private readonly http: AxiosInstance
   private readonly cache: Keyv
 
   constructor () {
-    this.config = getYouTubeConfig()
     this.http = axios.create({
       baseURL: 'https://www.googleapis.com/youtube/v3',
     })
-    this.cache = new Keyv(this.config.cacheUri, {
+    this.cache = new Keyv(config.cacheUri, {
       ttl: 24 * 60 * 60 * 1000,
     })
   }
@@ -34,7 +34,7 @@ export class ApiClient {
           regionCode,
           maxResults,
           pageToken,
-          key: this.config.apiKey,
+          key: config.apiKey,
         },
       }),
     )
@@ -57,7 +57,7 @@ export class ApiClient {
         params: {
           part: 'snippet,contentDetails,status,statistics',
           id: videoIdsToQuery.join(','),
-          key: this.config.apiKey,
+          key: config.apiKey,
         },
       })).data.items
       for (const video of videos) {
