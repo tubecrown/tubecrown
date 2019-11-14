@@ -1,5 +1,5 @@
-import { Component, Prop, Vue } from 'vue-property-decorator'
 import { DateTime } from 'luxon'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 export interface DateUpdateEvent {
   year: string
@@ -13,11 +13,11 @@ export interface DateUpdateEvent {
     const months = [...Array.from({ length: 12 }, (v, k) => `${k + 1}`), 'any']
     const selectedYear = `${this.year}`
     const selectedMonth = `${this.month || 'any'}`
-    const lastDate = DateTime.utc(+selectedYear,  +selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
+    const lastDate = DateTime.utc(+selectedYear, +selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
     const days = selectedMonth === 'any' ? ['any'] : [...Array.from({ length: lastDate.day }, (v, k) => `${k + 1}`), 'any']
     const selectedDay = !this.day || this.day > lastDate.day ? 'any' : `${this.day}`
     return { selectedYear, selectedMonth, selectedDay, years, months, days }
-  }
+  },
 })
 export class DateSelector extends Vue {
   @Prop(Number)
@@ -45,7 +45,7 @@ export class DateSelector extends Vue {
       this.days = ['any']
       this.selectedDay = 'any'
     } else {
-      const lastDate = DateTime.utc(+this.selectedYear,  +this.selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
+      const lastDate = DateTime.utc(+this.selectedYear, +this.selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
       this.days = [...Array.from({ length: lastDate.day }, (v, k) => `${k + 1}`), 'any']
       if (this.selectedDay !== 'any' && +this.selectedDay > lastDate.day) {
         this.selectedDay = `${lastDate.day}`
