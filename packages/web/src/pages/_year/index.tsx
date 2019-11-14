@@ -57,7 +57,7 @@ export default class SearchByYearPage extends Vue {
     return (
       <v-container>
         <date-selector year={this.year} on={{ 'date-update': this.handleDateUpdate }} />
-        <h1>{this.startDate} to {this.endDate}</h1>
+        <h1>Best videos from {this.startDate} to {this.endDate}</h1>
       </v-container>
     )
   }
