@@ -3,7 +3,7 @@ import isNaturalNumber from 'is-natural-number'
 import { DateTime } from 'luxon'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
-import { DateSelector, DateUpdateEvent } from '../../../../components/date-selector'
+import { DateSelector, DateUpdateEvent } from '../../../../components/filter'
 
 @Component<SearchByDatePage>({
   components: {
