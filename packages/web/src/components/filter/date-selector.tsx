@@ -1,54 +1,53 @@
 import { DateTime } from 'luxon'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-export interface DateUpdateEvent {
+export interface SimpleDate {
   year: string
   month: string
   day: string
 }
 
-@Component<DateSelector>({
-  data () {
-    const years = Array.from({ length: 15 }, (v, k) => `${k + 2005}`)
-    const months = [...Array.from({ length: 12 }, (v, k) => `${k + 1}`), 'any']
-    const selectedYear = `${this.year}`
-    const selectedMonth = `${this.month || 'any'}`
-    const lastDate = DateTime.utc(+selectedYear, +selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
-    const days = selectedMonth === 'any' ? ['any'] : [...Array.from({ length: lastDate.day }, (v, k) => `${k + 1}`), 'any']
-    const selectedDay = !this.day || this.day > lastDate.day ? 'any' : `${this.day}`
-    return { selectedYear, selectedMonth, selectedDay, years, months, days }
-  },
-})
+const getLastDate = (year: number, month: number): DateTime => {
+  return DateTime.utc(year, month, 1).plus({ months: 1 }).minus({ days: 1 })
+}
+
+const getDays = (lastDay: number): string[] => {
+  return [...Array.from({ length: lastDay }, (v, k) => `${k + 1}`), 'any']
+}
+
+@Component<DateSelector>({})
 export class DateSelector extends Vue {
-  @Prop(Number)
-  readonly year!: number
-  @Prop(Number)
-  readonly month!: number
-  @Prop(Number)
-  readonly day!: number
+  @Prop(Object)
+  readonly initDate!: SimpleDate
 
-  selectedYear!: string
-  selectedMonth!: string
-  selectedDay!: string
-
+  currentDate!: SimpleDate
   years!: string[]
   months!: string[]
   days!: string[]
 
+  data () {
+    const lastDate = getLastDate(+this.initDate.year, +this.initDate.month)
+    const years = Array.from({ length: (DateTime.utc().year - 2004) }, (v, k) => `${k + 2005}`)
+    const months = [...Array.from({ length: 12 }, (v, k) => `${k + 1}`), 'any']
+    const days = this.initDate.month === 'any' ? ['any'] : getDays(lastDate.day)
+    const day = this.initDate.day !== 'any' && +this.initDate.day > lastDate.day ? `${lastDate.day}` : this.initDate.day
+    const currentDate: SimpleDate = { year: this.initDate.year, month: this.initDate.month, day }
+    return { currentDate, years, months, days }
+  }
+
   handleClick () {
-    const dateUpdateEvent: DateUpdateEvent = { year: this.selectedYear, month: this.selectedMonth, day: this.selectedDay }
-    this.$emit('date-update', dateUpdateEvent)
+    this.$emit('date-update', this.currentDate)
   }
 
   handleDateChange () {
-    if (this.selectedMonth === 'any') {
+    if (this.currentDate.month === 'any') {
       this.days = ['any']
-      this.selectedDay = 'any'
+      this.currentDate.day = 'any'
     } else {
-      const lastDate = DateTime.utc(+this.selectedYear, +this.selectedMonth, 1).plus({ months: 1 }).minus({ days: 1 })
-      this.days = [...Array.from({ length: lastDate.day }, (v, k) => `${k + 1}`), 'any']
-      if (this.selectedDay !== 'any' && +this.selectedDay > lastDate.day) {
-        this.selectedDay = `${lastDate.day}`
+      const lastDate = getLastDate(+this.currentDate.year, +this.currentDate.month)
+      this.days = getDays(lastDate.day)
+      if (this.currentDate.day !== 'any' && +this.currentDate.day > lastDate.day) {
+        this.currentDate.day = `${lastDate.day}`
       }
     }
   }
@@ -58,13 +57,13 @@ export class DateSelector extends Vue {
       <v-container fluid>
         <v-row align='center'>
           <v-col class='d-flex' cols='8' sm='2'>
-            <v-select items={this.years} v-model={this.selectedYear} on={{ change: this.handleDateChange }} label='Year' />
+            <v-select items={this.years} v-model={this.currentDate.year} on={{ change: this.handleDateChange }} label='Year' />
           </v-col>
           <v-col class='d-flex' cols='8' sm='2'>
-            <v-select items={this.months} v-model={this.selectedMonth} on={{ change: this.handleDateChange }} label='Month' />
+            <v-select items={this.months} v-model={this.currentDate.month} on={{ change: this.handleDateChange }} label='Month' />
           </v-col>
           <v-col class='d-flex' cols='8' sm='2'>
-            <v-select items={this.days} v-model={this.selectedDay} label='Day' />
+            <v-select items={this.days} v-model={this.currentDate.day} label='Day' />
           </v-col>
           <v-col class='d-flex' cols='8' sm='2'>
             <v-btn on={{ click: this.handleClick }}>Update</v-btn>
