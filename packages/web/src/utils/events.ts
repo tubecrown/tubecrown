@@ -11,11 +11,11 @@ export const isPureClickEvent = (event: MouseEvent): boolean => {
 }
 
 export const routeBySimpleDateEvent = (simpleDate: SimpleDate, route: VueRouter): void => {
-  if (simpleDate.month === 'any') {
+  if (simpleDate.month === 'Any') {
     route.push(`/${simpleDate.year}`)
     return
   } 
-  if (simpleDate.day === 'any') {
+  if (simpleDate.day === 'Any') {
     route.push(`/${simpleDate.year}/${simpleDate.month}`)
     return
   }

@@ -12,7 +12,7 @@ const getLastDate = (year: number, month: number): DateTime => {
 }
 
 const getDays = (lastDay: number): string[] => {
-  return [...Array.from({ length: lastDay }, (v, k) => `${k + 1}`), 'any']
+  return ['Any', ...Array.from({ length: lastDay }, (v, k) => `${k + 1}`)]
 }
 
 @Component<DateSelector>({})
@@ -28,9 +28,9 @@ export class DateSelector extends Vue {
   data () {
     const lastDate = getLastDate(+this.initDate.year, +this.initDate.month)
     const years = Array.from({ length: (DateTime.utc().year - 2004) }, (v, k) => `${k + 2005}`)
-    const months = [...Array.from({ length: 12 }, (v, k) => `${k + 1}`), 'any']
-    const days = this.initDate.month === 'any' ? ['any'] : getDays(lastDate.day)
-    const day = this.initDate.day !== 'any' && +this.initDate.day > lastDate.day ? `${lastDate.day}` : this.initDate.day
+    const months = ['Any', ...Array.from({ length: 12 }, (v, k) => `${k + 1}`)]
+    const days = this.initDate.month === 'Any' ? ['Any'] : getDays(lastDate.day)
+    const day = this.initDate.day !== 'Any' && +this.initDate.day > lastDate.day ? `${lastDate.day}` : this.initDate.day
     const currentDate: SimpleDate = { year: this.initDate.year, month: this.initDate.month, day }
     return { currentDate, years, months, days }
   }
@@ -40,13 +40,13 @@ export class DateSelector extends Vue {
   }
 
   handleDateChange () {
-    if (this.currentDate.month === 'any') {
-      this.days = ['any']
-      this.currentDate.day = 'any'
+    if (this.currentDate.month === 'Any') {
+      this.days = ['Any']
+      this.currentDate.day = 'Any'
     } else {
       const lastDate = getLastDate(+this.currentDate.year, +this.currentDate.month)
       this.days = getDays(lastDate.day)
-      if (this.currentDate.day !== 'any' && +this.currentDate.day > lastDate.day) {
+      if (this.currentDate.day !== 'Any' && +this.currentDate.day > lastDate.day) {
         this.currentDate.day = `${lastDate.day}`
       }
     }

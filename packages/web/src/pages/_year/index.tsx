@@ -49,7 +49,7 @@ export default class SearchByYearPage extends Vue {
   }
 
   render () {
-    const initDate: SimpleDate = { year: `${this.year}`, month: 'any', day: 'any' }
+    const initDate: SimpleDate = { year: `${this.year}`, month: 'Any', day: 'Any' }
     return (
       <v-container>
         <date-selector initDate={initDate} on={{ 'date-update': this.handleDateUpdate }} />
