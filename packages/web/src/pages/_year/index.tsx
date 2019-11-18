@@ -3,8 +3,13 @@ import isNaturalNumber from 'is-natural-number'
 import { DateTime } from 'luxon'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
+import { DateSelector, SimpleDate } from '../../components/filter'
+import { routeBySimpleDateEvent } from '../../utils/events'
 
 @Component<SearchByYearPage>({
+  components: {
+    DateSelector,
+  },
   async asyncData (context: Context) {
     const { params } = context
     const dateTime = DateTime.utc(+params.year)
@@ -13,12 +18,14 @@ import { MetaInfo } from 'vue-meta'
     const title = `Best videos of ${dateTime.toFormat('yyyy')}`
     return {
       title,
+      year: +params.year,
       startDate,
       endDate,
     }
   },
 })
 export default class SearchByYearPage extends Vue {
+  readonly year!: number
   readonly title!: string
   readonly startDate!: string
   readonly endDate!: string
@@ -26,9 +33,13 @@ export default class SearchByYearPage extends Vue {
   async middleware (context: Context) {
     const { params } = context
     const year = +params.year
-    if (!isNaturalNumber(year)) {
-      context.redirect(`/1990`)
+    if (!isNaturalNumber(year) || year > DateTime.utc().year) {
+      context.redirect(`/2005`)
     }
+  }
+
+  handleDateUpdate (simpleDate: SimpleDate) {
+    routeBySimpleDateEvent(simpleDate, this.$router)
   }
 
   head (): MetaInfo {
@@ -38,9 +49,11 @@ export default class SearchByYearPage extends Vue {
   }
 
   render () {
+    const initDate: SimpleDate = { year: `${this.year}`, month: 'Any', day: 'Any' }
     return (
       <v-container>
-        <h1>{this.title}, {this.startDate} to {this.endDate}</h1>
+        <date-selector initDate={initDate} on={{ 'date-update': this.handleDateUpdate }} />
+        <h1>Best videos from {this.startDate} to {this.endDate}</h1>
       </v-container>
     )
   }
