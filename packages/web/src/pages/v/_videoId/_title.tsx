@@ -1,5 +1,4 @@
 import { Context } from '@nuxt/types'
-import slugify from '@sindresorhus/slugify'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import axios from 'axios'
 import { htmlUnescape } from 'escape-goat'
@@ -25,8 +24,8 @@ export default class WatchPage extends Vue {
   async middleware (context: Context) {
     const { params } = context
     const video = (await axios.get<VideoDto>(`http://localhost:4000/api/videos/${params.videoId}`)).data
-    const slugTitle = slugify(video.titleHtml)
-    if (slugTitle !== params.title) {
+    const slugTitle = encodeURI(video.titleHtml.replace(/[ \-<>\[\]{}|\\^%]+/g, '-'))
+    if (slugTitle !== encodeURI(params.title)) {
       context.redirect(`/v/${params.videoId}/${slugTitle}`)
     }
   }
