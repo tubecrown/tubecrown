@@ -21,6 +21,6 @@
     "node": "10.17.0"
   },
   "devDependencies": {
-    "lerna": "3.18.4"
+    "lerna": "3.19.0"
   }
 }
