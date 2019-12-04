@@ -14,7 +14,7 @@ export const routeBySimpleDateEvent = (simpleDate: SimpleDate, route: VueRouter)
   if (simpleDate.month === 'Any') {
     route.push(`/${simpleDate.year}`)
     return
-  } 
+  }
   if (simpleDate.day === 'Any') {
     route.push(`/${simpleDate.year}/${simpleDate.month}`)
     return
