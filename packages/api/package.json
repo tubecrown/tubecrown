@@ -15,18 +15,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@keyv/sqlite": "2.0.1",
-    "@nestjs/common": "6.9.0",
-    "@nestjs/core": "6.9.0",
-    "@nestjs/platform-express": "6.9.0",
+    "@keyv/sqlite": "2.0.2",
+    "@nestjs/common": "6.10.5",
+    "@nestjs/core": "6.10.5",
+    "@nestjs/platform-express": "6.10.5",
     "@nestjs/typeorm": "6.2.0",
     "@tubecrown/config": "0.0.0",
     "@tubecrown/core": "0.0.0",
     "@tubecrown/models": "0.0.0",
     "cron": "1.7.2",
     "helmet": "3.21.2",
-    "keyv": "3.1.0",
-    "luxon": "1.21.1",
+    "keyv": "4.0.0",
+    "luxon": "1.21.3",
     "morgan": "1.9.1",
     "reflect-metadata": "0.1.13",
     "xss": "1.0.6"
@@ -37,8 +37,8 @@
     "@types/cron": "1.7.1",
     "@types/helmet": "0.0.45",
     "@types/keyv": "3.1.0",
-    "@types/luxon": "1.15.2",
+    "@types/luxon": "1.21.0",
     "@types/morgan": "1.7.37",
-    "nodemon": "1.19.4"
+    "nodemon": "2.0.1"
   }
 }
