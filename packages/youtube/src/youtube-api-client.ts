@@ -133,7 +133,7 @@ export class ApiClient {
       const randomDate: string | Date = videoChance.date({ min: new Date(startDate), max: new Date(endDate) })
       const videoSnippet: VideoSnippet = {
         title: videoChance.sentence(),
-        channelId: videoChance.string({ length: 24 }),
+        channelId: videoChance.string({ length: 24, alpha: true, numeric: true }),
         channelTitle: videoChance.sentence({ words: videoChance.integer({ min: 1, max: 5 }) }),
         publishedAt: randomDate instanceof Date ? randomDate.toISOString() : randomDate,
         thumbnails,
