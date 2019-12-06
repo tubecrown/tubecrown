@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { VideoDto } from '@tubecrown/core/lib/video'
 import { YouTube } from '@tubecrown/youtube'
+import { createApiClient } from '@tubecrown/youtube/lib/youtube-api-client'
 import { DateTime } from 'luxon'
 import { HtmlService } from '../common'
 
@@ -9,7 +10,7 @@ export class VideoService {
   private readonly youTubeApiClient: YouTube.ApiClient
 
   constructor (private readonly htmlService: HtmlService) {
-    this.youTubeApiClient = new YouTube.ApiClient()
+    this.youTubeApiClient = createApiClient()
   }
 
   async search (): Promise<VideoDto[]> {
