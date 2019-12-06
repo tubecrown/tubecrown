@@ -168,7 +168,7 @@ export class ApiClient {
             : `PT${durationMinute}M${durationSecond}S`,
       }
       const statistics: VideoStatistics = {
-        viewCount: `${chance.integer({ min: 0 })}`,
+        viewCount: `${chance.integer({ min: 1000, max: 9999999 })}`,
       }
       const video: Video = {
         etag,
