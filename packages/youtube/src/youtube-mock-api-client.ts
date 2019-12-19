@@ -76,7 +76,7 @@ export class MockApiClient implements ApiClient {
     for (const videoId of videoIds) {
       const chance = new Chance(videoId)
       const etag = chance.string({ length: 55 })
-      const durationHour = chance.integer({ min: 0, max: 23 })
+      const durationHour = chance.integer({ min: 0, max: 1 })
       const durationMinute = chance.integer({ min: 1, max: 59 })
       const durationSecond = chance.integer({ min: 1, max: 59 })
       const contentDetails: VideoContentDetails = {
