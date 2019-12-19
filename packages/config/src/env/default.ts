@@ -4,6 +4,7 @@ import { TaskSchedulerConfig } from '../task'
 import { YouTubeConfig } from '../youtube'
 
 export const youTube: YouTubeConfig = {
+  useMockData: false,
   apiKey: 'YOUTUBE_API_KEY',
   cacheUri: `sqlite://${path.join(__dirname, '../../../../tmp/youtube-api.sqlite')}`,
 }

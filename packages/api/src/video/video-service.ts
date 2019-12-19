@@ -9,7 +9,7 @@ export class VideoService {
   private readonly youTubeApiClient: YouTube.ApiClient
 
   constructor (private readonly htmlService: HtmlService) {
-    this.youTubeApiClient = new YouTube.ApiClient()
+    this.youTubeApiClient = YouTube.createApiClient()
   }
 
   async search (): Promise<VideoDto[]> {
