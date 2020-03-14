@@ -30,7 +30,7 @@
     "progress": "2.0.3",
     "rimraf": "3.0.0",
     "table": "5.4.6",
-    "tslint": "5.20.1",
+    "tslint": "6.1.0",
     "tslint-config-standard": "9.0.0",
     "tslint-react": "4.1.0",
     "typescript": "3.7.3"
