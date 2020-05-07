@@ -40,6 +40,6 @@
     "@types/cross-spawn": "6.0.1",
     "@types/node": "12.12.14",
     "@types/progress": "2.0.3",
-    "@types/table": "4.0.7"
+    "@types/table": "5.0.0"
   }
 }
