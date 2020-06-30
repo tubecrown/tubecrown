@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "7.7.4",
-    "@nuxt/typescript-build": "0.3.10",
+    "@nuxt/typescript-build": "1.0.3",
     "@tubecrown/dev": "0.0.0",
     "@types/axios": "0.14.0",
     "@types/escape-goat": "2.0.1",
