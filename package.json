@@ -18,9 +18,9 @@
     "dev": "npm run build && docker-compose up"
   },
   "engines": {
-    "node": "10.17.0"
+    "node": "10.22.0"
   },
   "devDependencies": {
-    "lerna": "3.19.0"
+    "lerna": "3.22.1"
   }
 }

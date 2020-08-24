@@ -16,29 +16,29 @@
   },
   "dependencies": {
     "@keyv/sqlite": "2.0.2",
-    "@nestjs/common": "6.10.5",
-    "@nestjs/core": "6.10.5",
-    "@nestjs/platform-express": "6.10.5",
-    "@nestjs/typeorm": "6.2.0",
+    "@nestjs/common": "6.11.11",
+    "@nestjs/core": "6.11.11",
+    "@nestjs/platform-express": "6.11.11",
+    "@nestjs/typeorm": "6.3.4",
     "@tubecrown/config": "0.0.0",
     "@tubecrown/core": "0.0.0",
     "@tubecrown/models": "0.0.0",
-    "cron": "1.7.2",
-    "helmet": "3.21.2",
-    "keyv": "4.0.0",
-    "luxon": "1.21.3",
-    "morgan": "1.9.1",
+    "cron": "1.8.2",
+    "helmet": "3.23.3",
+    "keyv": "4.0.1",
+    "luxon": "1.25.0",
+    "morgan": "1.10.0",
     "reflect-metadata": "0.1.13",
-    "xss": "1.0.6"
+    "xss": "1.0.8"
   },
   "devDependencies": {
     "@tubecrown/dev": "0.0.0",
     "@tubecrown/youtube": "0.0.0",
-    "@types/cron": "1.7.1",
-    "@types/helmet": "0.0.45",
-    "@types/keyv": "3.1.0",
-    "@types/luxon": "1.21.0",
-    "@types/morgan": "1.7.37",
-    "nodemon": "2.0.1"
+    "@types/cron": "1.7.2",
+    "@types/helmet": "0.0.48",
+    "@types/keyv": "3.1.1",
+    "@types/luxon": "1.24.3",
+    "@types/morgan": "1.9.1",
+    "nodemon": "2.0.4"
   }
 }
