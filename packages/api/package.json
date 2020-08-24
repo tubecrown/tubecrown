@@ -19,7 +19,7 @@
     "@nestjs/common": "6.10.5",
     "@nestjs/core": "6.10.5",
     "@nestjs/platform-express": "6.10.5",
-    "@nestjs/typeorm": "6.2.0",
+    "@nestjs/typeorm": "7.1.1",
     "@tubecrown/config": "0.0.0",
     "@tubecrown/core": "0.0.0",
     "@tubecrown/models": "0.0.0",
