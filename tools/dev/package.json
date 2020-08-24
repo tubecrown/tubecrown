@@ -26,7 +26,7 @@
     "eslint-plugin-standard": "4.0.1",
     "latest-version": "5.1.0",
     "lerna": "3.19.0",
-    "prettier": "1.19.1",
+    "prettier": "2.1.0",
     "progress": "2.0.3",
     "rimraf": "3.0.0",
     "table": "5.4.6",
