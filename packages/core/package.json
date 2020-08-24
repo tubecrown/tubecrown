@@ -13,10 +13,10 @@
     "access": "public"
   },
   "dependencies": {
-    "luxon": "1.21.3"
+    "luxon": "1.25.0"
   },
   "devDependencies": {
     "@tubecrown/dev": "0.0.0",
-    "@types/luxon": "1.21.0"
+    "@types/luxon": "1.24.3"
   }
 }
